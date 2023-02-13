@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-k8s-sample-deployment
+  labels:
+    app: python-k8s-sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-k8s-sample-label
+  template:
+    metadata:
+      labels:
+        app: python-k8s-sample-label
+    spec:
+      containers:
+        - name: python-k8s-sample-container
+          image: sfiorini/python-k8s-sample:latest
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "0.2"
