@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains a sample template for deployin a 
+This repository contains a sample template for deploying a 
 [Python](https://www.python.org/) application to [Kubernetes](https://kubernetes.io/).
 
 ## Usage
