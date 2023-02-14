@@ -1,10 +1,11 @@
 FROM python:3.9.16
 
-RUN pip3 install flask flask_restful
-
 WORKDIR /app
 
 COPY api.py /app
+COPY requirements.txt /app
+
+RUN pip3 install -r requirements.txt
 
 EXPOSE 3000
 
