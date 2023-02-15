@@ -7,8 +7,8 @@ metadata:
 spec:
   type: LoadBalancer 
   ports:
-  - port: 3000
-    targetPort: 3000
+  - port: ${PORT}
+    targetPort: ${PORT}
     protocol: TCP
   selector:
     app: python-k8s-sample-label

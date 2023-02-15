@@ -24,6 +24,7 @@ You will need to make sure that the following dependencies are installed on your
 ---
 #### Setup Development Environment
  - Clone this repository
+ - Copy `.env.sample` to `.env` and set the evironment variables as indicated in the help within the file.
  - Install dependencies:
     ```bash
     make dependencies-install
@@ -35,7 +36,7 @@ You will need to make sure that the following dependencies are installed on your
     ```
  - Run application
     ```bash
-    make run
+    make run-dev
     ```
      or
     
@@ -102,7 +103,9 @@ You will need to make sure that the following dependencies are installed on your
   ```bash
   make install-ingress-controller
   ```
-- Deploy application's pod.
+- Deploy application's pod.  
+  Open `./kube/python-k8s-sample.yaml` and replace `${PORT}` with the port declared on your `.env` file (Default: 3000).
+
   ```bash
   kubectl apply -f ./kube/python-k8s-sample.yaml
   ```
@@ -111,7 +114,9 @@ You will need to make sure that the following dependencies are installed on your
   ```bash
   make deploy-k8s-deployment
   ```
-- Deploy application's service.
+- Deploy application's service.   
+  Open `./kube/python-k8s-sample-service.yaml` and replace `${PORT}` with the port declared on your `.env` file (Default: 3000).
+
   ```bash
   kubectl apply -f ./kube/python-k8s-sample-service.yaml
   ```
@@ -120,7 +125,8 @@ You will need to make sure that the following dependencies are installed on your
   ```bash
   make deploy-k8s-service
   ```  
-- Deploy application's ingress.
+- Deploy application's ingress.   
+  Open `./kube/python-k8s-sample-ingress.yaml` and replace `${PORT}` with the port declared on your `.env` file (Default: 3000).
   ```bash
   kubectl apply -f ./kube/python-k8s-sample-ingress.yaml
   ```
@@ -162,7 +168,8 @@ See below a complete list of `make` commands for installation and maintenance of
 | Command                   | Section       |  Description | 
 | -----                     | ----          | ----
 | dependencies-install      | Development   | Install required dependencies
-| run                       | Development   | Run application
+| run                       | Development   | Run application in production mode (waitress server)
+| run-dev                   | Development   | Run application in development mode
 | build-image               | Docker        | Build and tag Docker image
 | publish-image             | Docker        | Publish Docker image to registry
 | create-run-container      | Docker        | Create and run Container from Docker image

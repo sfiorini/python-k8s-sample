@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import reqparse, abort, Api, Resource
+from decouple import config
 
 app = Flask(__name__)
 api = Api(app)
@@ -14,6 +15,13 @@ USERS = [
      'lastName': "Jane"},
 ]
 
+# Get environment variables.
+DEBUG = config('DEBUG', default=False, cast=bool)
+PORT = config('PORT', default=3000, cast=int)
+ENVIRONMENT=config('ENVIRONMENT', default='PROD', cast=str).upper()
+
+if (ENVIRONMENT != 'PROD' and ENVIRONMENT != 'TEST' and ENVIRONMENT != 'DEV'):
+    ENVIRONMENT='PROD'
 
 # Return current array index of user or abort if user does not exist.
 def user_exist(user_email):
@@ -89,4 +97,5 @@ api.add_resource(User, '/user/<user_email>')
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3000, debug=True)
+    print('ENVIRONMENT: ',ENVIRONMENT)
+    app.run(host='0.0.0.0', port=PORT, debug=DEBUG)

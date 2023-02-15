@@ -1,3 +1,11 @@
+## Get environment variables
+PORT := 3000
+
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+endif
+
 ## Local Development operations
 
 # Install required dependencies
@@ -5,14 +13,18 @@ dependencies-install:
 	pip3 install -r requirements.txt
 
 # Run application
-run:
+run-dev:
 	python3 api.py
+
+# Run application
+run:
+	waitress-serve --port $(PORT) api:app	
 
 ## Docker operations
 
 # Build and tag Docker image
 build-image:
-	docker image build . -t sfiorini/python-k8s-sample:v1.0.0  -t sfiorini/python-k8s-sample:latest
+	docker image build . --build-arg port=$(PORT) -t sfiorini/python-k8s-sample:v1.0.0  -t sfiorini/python-k8s-sample:latest
 
 # Publish Docker image
 publish-image:
@@ -20,7 +32,7 @@ publish-image:
 
 # Create and run Container from Docker image
 create-run-container:
-	docker run -d --name python-k8s-sample -p 3000:3000 sfiorini/python-k8s-sample:latest
+	docker run -d --name python-k8s-sample -p $(PORT):$(PORT) sfiorini/python-k8s-sample:latest
 
 # Start Container
 start:
@@ -54,15 +66,15 @@ install-ingress-controller:
 
 # Deploy application's pod
 deploy-k8s-deployment:
-	kubectl apply -f ./kube/python-k8s-sample.yaml
+	./utils/vars_replacer.sh -i ./kube/python-k8s-sample.yaml -p "PORT=$(PORT)" | kubectl apply -f -
 
 # Deploy application's service
 deploy-k8s-service:
-	kubectl apply -f ./kube/python-k8s-sample-service.yaml
+	./utils/vars_replacer.sh -i ./kube/python-k8s-sample-service.yaml -p "PORT=$(PORT)" | kubectl apply -f -
 
 # Deploy application's ingress
 deploy-k8s-ingress:
-	kubectl apply -f ./kube/python-k8s-sample-ingress.yaml
+	./utils/vars_replacer.sh -i ./kube/python-k8s-sample-ingress.yaml -p "PORT=$(PORT)" | kubectl apply -f -
 
 # Remove application's pod
 delete-k8s-deployment:
