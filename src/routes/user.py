@@ -16,7 +16,7 @@ def user_exist(user_email):
 router = APIRouter()
 
 @router.get("/user", tags=["Users"], response_model=List[User])
-async def list_user():
+async def list_users():
     return USERS
 
 
