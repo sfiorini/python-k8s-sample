@@ -5,7 +5,7 @@ ENV PORT=${port}
 
 WORKDIR /app
 
-COPY api.py /app
+COPY src/api.py /app
 COPY requirements.txt /app
 
 RUN pip3 install -r requirements.txt

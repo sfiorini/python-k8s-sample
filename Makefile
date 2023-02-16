@@ -12,7 +12,7 @@ endif
 dependencies-install:
 	pip3 install -r requirements.txt
 
-# Run application
+# Run application in dev
 run-dev:
 	python3 src/api.py
 
@@ -20,6 +20,9 @@ run-dev:
 run:
 	waitress-serve --port $(PORT) api:app	
 
+run-fast-api:
+	python3 src/fast_api.py
+	
 ## Docker operations
 
 # Build and tag Docker image
