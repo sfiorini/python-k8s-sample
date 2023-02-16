@@ -1,9 +1,19 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from decouple import config
 from routes.main import router as main_router
 from routes.user import router as user_router
+from utils.exceptions import CustomException
 
 app = FastAPI()
+
+@app.exception_handler(CustomException)
+async def custom_exception_handler(request: Request, exc: CustomException):
+    return JSONResponse(
+        status_code=exc.code,
+        content={"message": exc.message},
+    )
+
 
 # Get environment variables.
 DEBUG = config('DEBUG', default=False, cast=bool)
