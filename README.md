@@ -41,7 +41,7 @@ You will need to make sure that the following dependencies are installed on your
      or
     
     ```bash
-    python3 api.py
+    python3 src/api.py
     ```
  - Open browser at http://localhost:3000 and you should get the following response.
    ```json
@@ -155,7 +155,7 @@ Here's the project's folder structure:
 |- .vscode/         # Folder containing config files to develop the app using VSCode.
 |- kube/            # Kubernetes deployment yaml files.
 |- .gitignore       # Ignore patterns for git.
-|- api.py           # The Python application
+|- src              # The location of source files for the Python application
 |- Dockerfile       # Metadata content (title, author...).
 |- Makefile         # Makefile used for building our documents.
 |- README.md        # Documentation (this file)

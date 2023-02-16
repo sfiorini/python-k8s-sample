@@ -14,7 +14,7 @@ dependencies-install:
 
 # Run application
 run-dev:
-	python3 api.py
+	python3 src/api.py
 
 # Run application
 run:
