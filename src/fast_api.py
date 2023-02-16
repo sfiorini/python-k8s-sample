@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from decouple import config
+from routes.main import router as main_router
 from routes.user import router as user_router
 
 app = FastAPI()
@@ -12,7 +13,7 @@ ENVIRONMENT=config('ENVIRONMENT', default='PROD', cast=str).upper()
 if (ENVIRONMENT != 'PROD' and ENVIRONMENT != 'TEST' and ENVIRONMENT != 'DEV'):
     ENVIRONMENT='PROD'
 
-ROUTERS = (user_router,)
+ROUTERS = (user_router, main_router,)
 
 for r in ROUTERS:
     app.include_router(r)
