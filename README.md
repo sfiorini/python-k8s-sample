@@ -168,8 +168,10 @@ See below a complete list of `make` commands for installation and maintenance of
 | Command                   | Section       |  Description | 
 | -----                     | ----          | ----
 | dependencies-install      | Development   | Install required dependencies
-| run                       | Development   | Run application in production mode (waitress server)
-| run-dev                   | Development   | Run application in development mode
+| run                       | Development   | Run application service
+| bump-version-patch        | Development   | Bumps version's patch
+| bump-version-minor        | Development   | Bumps version's minor
+| bump-version-major        | Development   | Bumps version's major
 | build-image               | Docker        | Build and tag Docker image
 | publish-image             | Docker        | Publish Docker image to registry
 | create-run-container      | Docker        | Create and run Container from Docker image

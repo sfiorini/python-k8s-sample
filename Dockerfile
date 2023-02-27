@@ -5,11 +5,11 @@ ENV PORT=${port}
 
 WORKDIR /app
 
-COPY src/api.py /app
+COPY src/ /app/
 COPY requirements.txt /app
 
 RUN pip3 install -r requirements.txt
 
 EXPOSE $PORT
 
-CMD waitress-serve --port ${PORT} api:app
+CMD python -m uvicorn api:app --host 0.0.0.0 --port ${PORT}

@@ -1,8 +1,14 @@
 ## Get environment variables
 PORT := 3000
+__version__= "1.0.0"
 
 ifneq (,$(wildcard ./.env))
     include .env
+    export
+endif
+
+ifneq (,$(wildcard ./src/__init__.py))
+    include ./src/__init__.py
     export
 endif
 
@@ -12,16 +18,9 @@ endif
 dependencies-install:
 	pip3 install -r requirements.txt
 
-# Run application in dev
-run-dev:
-	python3 src/api.py
-
 # Run application
 run:
-	waitress-serve --port $(PORT) api:app	
-
-run-fast-api:
-	python3 src/fast_api.py
+	python3 src/api.py
 
 bump-version-patch:
 	bump2version patch
@@ -36,7 +35,7 @@ bump-version-major:
 
 # Build and tag Docker image
 build-image:
-	docker image build . --build-arg port=$(PORT) -t sfiorini/python-k8s-sample:v1.0.0  -t sfiorini/python-k8s-sample:latest
+	docker image build . --build-arg port=$(PORT) -t sfiorini/python-k8s-sample:v$(__version__)  -t sfiorini/python-k8s-sample:latest
 
 # Publish Docker image
 publish-image:
