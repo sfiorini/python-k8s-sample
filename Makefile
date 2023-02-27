@@ -22,7 +22,16 @@ run:
 
 run-fast-api:
 	python3 src/fast_api.py
-	
+
+bump-version-patch:
+	bump2version patch
+
+bump-version-minor:
+	bump2version minor
+
+bump-version-major:
+	bump2version major
+
 ## Docker operations
 
 # Build and tag Docker image
