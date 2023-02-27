@@ -36,7 +36,7 @@ You will need to make sure that the following dependencies are installed on your
     ```
  - Run application
     ```bash
-    make run-dev
+    make run
     ```
      or
     
@@ -49,6 +49,7 @@ You will need to make sure that the following dependencies are installed on your
     "message": "API Server is running successfully"
    }
    ```
+ - For the [OpenAPI](https://www.openapis.org/) documentation, open browser at http://localhost:3000/docs
 ---
 #### Run in a Docker container
  - Create [Docker](https://www.docker.com) image (Note: the following command adds 2 tags, as latest and the current version of the app):
@@ -75,6 +76,7 @@ You will need to make sure that the following dependencies are installed on your
       "message": "API Server is running successfully"
     }
     ```
+  - For the [OpenAPI](https://www.openapis.org/) documentation, open browser at http://localhost:3000/docs
   
   Fore all other [Docker](https://www.docker.com) commands, please see the [Makefile](#makefile-section) reference below.
 
