@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='python-k8-sample',
-    version='0.1.1',
+    version='0.1.2',
     description='sample template for deploying a Python application to Kubernetes',
     author='Stefano Fiorini',
     author_email='stefano@example.com',
